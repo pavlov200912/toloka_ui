@@ -1,0 +1,159 @@
+
+<div class='comment'>{{{comment}}}</div>
+<div class='code'>{{{code}}}</div>
+
+<div class="inconsistency" style="display:none">
+    <div class="question">
+        <p>Comment change correlate with code change?</p>
+        {{field type="radio" name="root" value="yes" label="Yes" hotkey="y" class="yes"}}
+        {{field type="radio" name="root" value="no" label="No" hotkey="n" class="no"}}
+    </div>
+
+    <div class="true" style="display: none;">
+        <p>Comment changed because of <strong>return</strong> or <strong>param</strong> or <strong>throw</strong> change in code?</p>
+
+        {{field type="radio" name="root1" value="yes" label="Yes" hotkey="y" class="yes"}}
+        {{field type="radio" name="root1" value="no" label="No" hotkey="n" class="no"}}
+        <div class="true1" style="display: none;">
+            <p>Why? Choose one one or more:</p>
+
+            <ul>
+                <li>{{field type="checkbox" name="cluster_0" label="param list in code and @param in comment changed" class="block"}}
+                <li>{{field type="checkbox" name="cluster_1" label="return type/statement in code and @return in comment changed" class="block"}}
+                <li>{{field type="checkbox" name="cluster_2"  label="throw list in code and @throw in comment changed" class="block"}}
+            </ul>
+        </div>
+
+        <div class="false1" style="display: none;">
+            <p>Comment changed as consequence of refactoring?</p>
+
+            {{field type="radio" name="root10" value="yes" label="Yes" hotkey="y" class="yes"}}
+            {{field type="radio" name="root10" value="no" label="No" hotkey="n" class="no"}}
+            <div class="true10" style="display: none;">
+                <p>Choose one or more:</p>
+                <ul>
+                    <li>{{field type="checkbox" name="cluster_3" label="Renamed variable used in code and comment" class="block"}}
+                    <li>{{field type="checkbox" name="cluster_4" label="Renamed function" class="block"}}
+                    <li>{{field type="checkbox" name="cluster_5"  label="Renamed external function/class used in code and comment" class="block"}}
+                    <li>{{field type="checkbox" name="cluster_6"  label="Replaced magic number" class="block"}}
+                </ul>
+            </div>
+            <div class="false10" style="display: none;">
+                <p>Comment change correlate with clogic changed in code?</p>
+                <ul>
+                    <li>{{field type="radio" name="cluster_7" value="yes" label="Yes" hotkey="y" class="yes"}}
+                    <li>{{field type="radio" name="cluster_7" value="no" label="No" hotkey="n" class="no"}}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="false" style="display: none;">
+        <p>Information in comment about function changed?</p>
+        {{field type="radio" name="root0" value="yes" label="Yes" hotkey="y" class="yes"}}
+        {{field type="radio" name="root0" value="no" label="No" hotkey="n" class="no"}}
+        <div class="true0" style="display: none;">
+            <p>What changed in comment?</p>
+            <ul>
+                <li>{{field type="checkbox" name="cluster_9" label="TODO list changed" class="block"}}
+                <li>{{field type="checkbox" name="cluster_10" label="Code logic clarified" class="block"}}
+                <li>{{field type="checkbox" name="cluster_11"  label="@param part clarified" class="block"}}
+                <li>{{field type="checkbox" name="cluster_12"  label="@return part clarified" class="block"}}
+                <li>{{field type="checkbox" name="cluster_13"  label="@throw part clarified" class="block"}}
+                <li>{{field type="checkbox" name="cluster_14"  label="Other" class="block"}}
+            </ul>
+
+
+        </div>
+
+        <div class="false0" style="display: none;">
+            <p> Choose one or more:</p>
+            <ul>
+                <li>{{field type="checkbox" name="cluster_15"  label="Typo fix" class="block"}}
+                <li>{{field type="checkbox" name="cluster_16"  label="Paraphrasing" class="block"}}
+                <li>{{field type="checkbox" name="cluster_17"  label="TODO introduced" class="block"}}
+                <li>{{field type="checkbox" name="cluster_18"  label="External API clarified" class="block"}}
+                <li>{{field type="checkbox" name="cluster_19"  label="Other" class="block"}}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="consistency" style="display: none;">
+    <div class="question">
+        <p>Should comment be changed?</p>
+        {{field type="radio" name="croot" value="yes" label="Yes" hotkey="y" class="yes"}}
+        {{field type="radio" name="croot" value="no" label="No" hotkey="n" class="no"}}
+    </div>
+
+    <div class="true" style="display: none;">
+        <p>The comment must be completely overwritten?</p>
+        {{field type="radio" name="croot1" value="yes" label="Yes" hotkey="y" class="yes"}}
+        {{field type="radio" name="croot1" value="no" label="No" hotkey="n" class="no"}}
+
+        <div class="true1" style="display: none;">
+            <p>Why?</p>
+            <ul>
+                <li>{{field type="checkbox" name="ccluster_0"  label="Everything that the old comment covers in code changed" class="block"}}
+                <li>{{field type="checkbox" name="ccluster_1"  label="Comment is just a mock string like 'JavaDoc'" class="block"}}
+                <li>{{field type="checkbox" name="ccluster_2"  label="Comment doesn't correlate with function at all" class="block"}}
+                <li>{{field type="checkbox" name="ccluster_3"  label="Other" class="block"}}
+                <li><div class="ccluster_3_input" style="display: none;">{{field type="input" name="ccluster_3_input"}}</div>
+
+            </ul>
+        </div>
+
+        <div class="false1" style="display: none;">
+            <p>Should something be changed in <strong>@param</strong> <strong>@return</strong> or <strong>@throws</strong>?</p>
+            {{field type="radio" name="croot10" value="yes" label="Yes" hotkey="y" class="yes"}}
+            {{field type="radio" name="croot10" value="no" label="No" hotkey="n" class="no"}}
+            <div class="true10" style="display: none;">
+                <p>Choose one or more:</p>
+                <ul>
+                    <li>{{field type="checkbox" name="ccluster_4"  label="Param" class="block"}}
+                    <li>{{field type="checkbox" name="ccluster_5"  label="Return" class="block"}}
+                    <li>{{field type="checkbox" name="ccluster_6"  label="Throws" class="block"}}
+                </ul>
+            </div>
+            <div class="false10" style="display: none;">
+                <p>Why should comment be changed?</p>
+                <ul>
+                    <li>{{field type="checkbox" name="ccluster_7"  label="It contains fixed technical debt (TODO)" class="block"}}
+                    <li>{{field type="checkbox" name="ccluster_8"  label="Variable/function name used in comment replaced/renamed in code" class="block"}}
+                    <li>{{field type="checkbox" name="ccluster_9"  label="Code logic described in comment changed" class="block"}}
+                    <li>{{field type="checkbox" name="ccluster_10"  label="Other" class="block"}}
+                    <li><div class="ccluster_10_input" style="display: none;">{{field type="input" name="ccluster_10_input"}}</div>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="false" style="display: none;">
+        <p>Code changes mainly about <strong>@return</strong> <strong>@param</strong> or <strong>@throws</strong>?
+            {{field type="radio" name="croot0" value="yes" label="Yes" hotkey="y" class="yes"}}
+            {{field type="radio" name="croot0" value="no" label="No" hotkey="n" class="no"}}
+        <div class="true0" style="dsiplay: none;">
+            <p>Choose one or more:</p>
+            <ul>
+                <li>{{field type="checkbox" name="ccluster_11"  label="param list changed but @param comment can stay unchanged" class="block"}}
+                <li>{{field type="checkbox" name="ccluster_12"  label="throw changed but @throw comment can stay unchanged" class="block"}}
+                <li>{{field type="checkbox" name="ccluster_13"  label="return type/statement changed but @return comment can stay unchanged" class="block"}}
+            </ul>
+        </div>
+        <div class="false0" style="dsiplay: none;">
+            <p>Why code changed? Choose one or more:</p>
+            <ul>
+                <li>{{field type="checkbox" name="ccluster_14"  label="Rewriting (for example syntax change)" class="block"}}
+                <li>{{field type="checkbox" name="ccluster_15"  label="Out of the scope API change" class="block"}}
+                <li>{{field type="checkbox" name="ccluster_16"  label="Renaming of a variable whic isn't specified in comment" class="block"}}
+                <li>{{field type="checkbox" name="ccluster_17"  label="Other" class="block"}}
+                <li><div class="ccluster_17_input" style="display: none;">{{field type="input" name="ccluster_17_input"}}</div>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
