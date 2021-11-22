@@ -7,13 +7,54 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
         for (let key in solution.output_values) {
             if (key.includes('cluster')) {
                 if (typeof solution.output_values[key] == "boolean") {
-                    console.log("check", key)
                     isChosen = isChosen | solution.output_values[key]
                 } else {
                     isChosen = isChosen | (solution.output_values[key] == 'yes')
                 }
             }
         }
+
+        const sub_tree_lists = [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15, 16, 17]]
+        var choosen_sub_trees = [false, false, false, false, false]
+
+        for (let key in solution.output_values) {
+            if (key.includes('cluster')) {
+                var is_true = false
+                if (typeof solution.output_values[key] == "boolean") {
+                    is_true = solution.output_values[key]
+                } else {
+                    is_true = (solution.output_values[key] == 'yes')
+                }
+                const cluster_num = parseInt(key.split('_')[1])
+                if (is_true) {
+                    for (let i = 0; i < 5; i++) {
+                        if(sub_tree_lists[i].includes(cluster_num)) {
+                            choosen_sub_trees[i] = true
+                        }
+
+                    }
+                }
+            }
+        }
+
+        var count = 0
+        for (let i = 0; i < 5; i++) {
+            if (choosen_sub_trees[i]) {
+                count += 1
+            }
+        }
+
+        if (count > 1) {
+            return {
+                task_id: this.getTask().id,
+                errors: {
+                    '__TASK__': {
+                        message: "You chose checkboxes in two different question tree leaves. Please choose only one."
+                    }
+                }
+            };
+        }
+
 
         if (!isChosen) {
             return {
