@@ -2,7 +2,7 @@
 
 <p>First of all, we thank you for your participation in this project.</p>
 
-<p>Your task, if you choose to accept it, is to answer several questions about <strong>Java code changes</strong> and <strong>comment</strong> in order to classify whether comment is consistent with shown code changes.</p>
+<p>Your task, if you choose to accept it, is to answer several questions about consistency of changes in <strong>Java code</strong> with corresponding <strong>comment</strong>.</p>
 
 <p>Depending on the result of this task, the best tolokers will be permitted to access more complicated tasks of annotating source code and comments.</p>
 
@@ -10,15 +10,14 @@
 
 <p>The examples provided for the annotation will look like this:</p>
 
-<img src="473.gif">
+<img src="https://i.ibb.co/ZxsRfr6/473.gif">
 
-<p>Learn more about this example. You may notice that the code changes add a parameter to the function. After the change, the function takes 5 parameters.
-    Although the commentary describes only 4 of them.</p>
+<p>Learn more about this example. You may notice that the code changes introduce a new parameter to the method's signature. After the change, the method takes 5 parameters instead of 4. However, the corresponding comment stil have information only about 4 of them.</p>
 
 <ul>
-<li><p> We have to add one <tt>@param</tt> description to the comment, therefore, to the question <strong>"Should comment be changed?"</strong> we answered <strong>"Yes"</strong></p></li>
-<li><p>Next question is <strong>"The comment must be completely overwritten?"</strong> and the answer is <strong>"No"</strong>, because changes in code only concern <tt>@param</tt> part of the comment. We don't have to replace first sentence of the comment or @param part about first four params. </p></li>
-    <li><p>After that, we are asked <strong>"Should something be changed in @param @return or @throws?"</strong>. The answer is <strong>"Yes"</strong>, we want to change <tt>@param</tt>.</p></li>
+    <li><p> To make the code and comment consistent with each other, we need to add <tt>@param</tt> with description of newly added parameter to the comment.  Therefore, response to the question  <strong>"Should comment be changed?"</strong> is <strong>"Yes"</strong>.</p></li>
+    <li><p>The next question is <strong>"Must the comment be completely overwritten?"</strong> and the answer is <strong>"No"</strong>. The code changes don't make the comment incorrect completely, there is only a need to update it by providing information about a new parameter.</p></li>
+    <li><p>The next question is <strong>"Should something be changed in @param, @return or @throws part of the comment?"</strong>. The answer is <strong>"Yes"</strong>, we because we need to add a new <tt>@param</tt> to the code comment.</p></li>
     <li><p>Finally, we have to choose only <strong>Param</strong> checkbox, because other options Return and Throws aren't changed in the code. </p></li>
 </ul>
 
@@ -27,4 +26,4 @@
 
 <p>On the figure below, you can explore full decision tree used for annotating samples in this task.</p>
 
-<img src="ConsistentSampleDecisionTree.jpg">
+<img src="https://i.ibb.co/k3NTRYS/Fixed-Tree.png" width="800">
