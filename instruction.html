@@ -6,24 +6,43 @@
 
 <p>Depending on the result of this task, the best tolokers will be permitted to access more complicated tasks of annotating source code and comments.</p>
 
+<h2>Comment Structure</h2>
+
+<p>We divide each JavaDoc comment into four parts: <strong>Summary</strong>, <strong>@param</strong>, <strong>@return</strong>, and <strong>@throws</strong>.</p>
+
+<img src="https://i.ibb.co/hB9W48X/Screenshot-2021-12-01-at-14-01-06.png" width="800">
+
+<ul>
+    <li><p>The <strong>Summary</strong> part usually consists of several sentences at the beginning of a comment. This part describes the general behavior of the function.</p></li>
+    <li><p>The <strong>@param</strong> part consists of a description of the function parameters, each parameter is described after the @param tag.</p></li>
+    <li><p>The <strong>@return</strong> part goes after the @return tag in the comment and describes the return value. </p></li>
+    <li><p>The <strong>@throws</strong> part follows after @throws or @exception tags and describes an exception that may be thrown from this method. </p></li>
+</ul>
+
+
+<p>The comment does not necessarily contain all four parts. For example, it can only consist of @return and @param parts, this is normal.</p>
+
 <h2>Labeling example</h2>
 
 <p>The examples provided for the annotation will look like this:</p>
 
-<img src="https://i.ibb.co/ZxsRfr6/473.gif">
+<img src="https://i.ibb.co/hBVcFs3/ezgif-com-video-to-gif.gif">
 
-<p>Learn more about this example. You may notice that the code changes introduce a new parameter to the method's signature. After the change, the method takes 5 parameters instead of 4. However, the corresponding comment stil has information only about 4 of them.</p>
+<p>Learn more about this example. You may notice that the code changes introduce a new parameter to the method's signature. After the change, the method takes 5 parameters instead of 4. However, the corresponding comment still has information about only 4 of them.</p>
 
 <ul>
-    <li><p> To make the code and comment consistent with each other, we need to add <tt>@param</tt> with description of newly added parameter to the comment.  Therefore, response to the question  <strong>"Should comment be changed?"</strong> is <strong>"Yes"</strong>.</p></li>
-    <li><p>The next question is <strong>"Must the comment be completely overwritten?"</strong> and the answer is <strong>"No"</strong>. The code changes don't make the comment incorrect completely, there is only a need to update it by providing information about a new parameter.</p></li>
-    <li><p>The next question is <strong>"Should something be changed in @param, @return or @throws part of the comment?"</strong>. The answer is <strong>"Yes"</strong>, we because we need to add a new <tt>@param</tt> to the code comment.</p></li>
-    <li><p>Finally, we have to choose only <strong>Param</strong> checkbox, because other options Return and Throws aren't changed in the code. </p></li>
+    <li><p> Summary part can stay <strong>unchanged</strong>, because the code changes don't affect logic described in the comment.
+        This method still "adds a HostPath volume to the pod-spec".</p></li>
+    <li><p> @param part <strong>must be changed</strong>. We have to add a description for the newly introduced parameter. </p></li>
+    <li><p> @return part is absent. </p></li>
+    <li><p> @throws part is also absent. </p></li>
 </ul>
 
 
-<h2>Full question tree</h2>
+<!--<h2>Full question tree</h2>-->
 
-<p>On the figure below, you can explore full decision tree used for annotating samples in this task.</p>
+<!--<p>On the figure below, you can explore full decision tree used for annotating samples in this task.</p>-->
 
-<img src="https://i.ibb.co/k3NTRYS/Fixed-Tree.png" width="800">
+<!--<img src="https://i.ibb.co/k3NTRYS/Fixed-Tree.png" width="800">-->
+
+
