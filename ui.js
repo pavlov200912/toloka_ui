@@ -1,94 +1,163 @@
 
+var cluster_dict = {
+    'summary': {
+        'change': [0, 1, 2, 3, 4],
+        'keep': [5, 6, 7, 8, 29],
+        'other': [4, 8]
+    },
+    'param': {
+        'change': [9, 10, 11, 12],
+        'keep': [13, 14, 15],
+        'other': [12, 15]
+    },
+    'return': {
+        'change': [16, 17, 18],
+        'keep': [19, 20, 21],
+        'other': [18, 21]
+    },
+    'throws': {
+        'change': [22, 23, 24, 25],
+        'keep': [26, 27, 28],
+        'other': [25, 28]
+    }
+}
+
 exports.Task = extend(TolokaHandlebarsTask, function (options) {
     TolokaHandlebarsTask.call(this, options);
 }, {
     validate: function(solution) {
-        var isChosen = false
-        for (let key in solution.output_values) {
-            if (key.includes('cluster')) {
-                if (typeof solution.output_values[key] == "boolean") {
-                    isChosen = isChosen | solution.output_values[key]
-                } else {
-                    isChosen = isChosen | (solution.output_values[key] === 'yes')
+
+        if(!solution.output_values.param || !solution.output_values.summary || !solution.output_values['return'] ||
+            !solution.output_values.throws) {
+            return {
+                task_id: this.getTask().id,
+                errors: {
+                    '__TASK__': {
+                        message: "You have to choose ont of the options for all 4 comment parts."
+                    }
                 }
-            }
+            };
         }
 
-        const sub_tree_lists = [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15, 16, 17]]
-        var choosen_sub_trees = [false, false, false, false, false]
-        var chosen_clusters = []
+        // const sub_tree_lists = [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15, 16, 17]]
+        // var choosen_sub_trees = [false, false, false, false, false]
+        // var chosen_clusters = []
+        //
+        // for (let key in solution.output_values) {
+        //     if (key.includes('cluster')) {
+        //         var is_true = false
+        //         if (typeof solution.output_values[key] == "boolean") {
+        //             is_true = solution.output_values[key]
+        //         } else {
+        //             is_true = (solution.output_values[key] === 'yes')
+        //         }
+        //         const cluster_num = parseInt(key.split('_')[1])
+        //         if (is_true) {
+        //             chosen_clusters.push(cluster_num)
+        //             for (let i = 0; i < 5; i++) {
+        //                 if(sub_tree_lists[i].includes(cluster_num)) {
+        //                     choosen_sub_trees[i] = true
+        //                 }
+        //
+        //             }
+        //         }
+        //     }
+        // }
+        //
+        // var count = 0
+        // for (let i = 0; i < 5; i++) {
+        //     if (choosen_sub_trees[i]) {
+        //         count += 1
+        //     }
+        // }
+        //
+        //
+        // var other_empty = false
+        //
+        // other_empty = chosen_clusters.includes(3)
+        //     && solution.output_values['ccluster_3_input'] == null
+        // other_empty |= chosen_clusters.includes(10)
+        //     && solution.output_values['ccluster_10_input'] == null
+        // other_empty |= chosen_clusters.includes(17)
+        //     && solution.output_values['ccluster_17_input'] == null
+        //
+        // if (other_empty) {
+        //     return {
+        //         task_id: this.getTask().id,
+        //         errors: {
+        //             '__TASK__': {
+        //                 message: "You chose other cluster but didn't fill the input box. Please clarify what do you mean by other."
+        //             }
+        //         }
+        //     };
+        // }
+        //
+        // if (count > 1) {
+        //     return {
+        //         task_id: this.getTask().id,
+        //         errors: {
+        //             '__TASK__': {
+        //                 message: "You chose checkboxes in two different question tree leaves. Please choose only one."
+        //             }
+        //         }
+        //     };
+        // }
+        //
+        //
 
-        for (let key in solution.output_values) {
-            if (key.includes('cluster')) {
-                var is_true = false
-                if (typeof solution.output_values[key] == "boolean") {
-                    is_true = solution.output_values[key]
-                } else {
-                    is_true = (solution.output_values[key] === 'yes')
-                }
-                const cluster_num = parseInt(key.split('_')[1])
-                if (is_true) {
-                    chosen_clusters.push(cluster_num)
-                    for (let i = 0; i < 5; i++) {
-                        if(sub_tree_lists[i].includes(cluster_num)) {
-                            choosen_sub_trees[i] = true
+        function validate_checkbox(obj, type, action) {
+            var is_chosen = false
+            for (let c of cluster_dict[type][action]) {
+                is_chosen = is_chosen || (solution.output_values['cluster_' + c.toString()] === true)
+            }
+            if (!is_chosen) {
+                return {
+                    task_id: obj.getTask().id,
+                    errors: {
+                        '__TASK__': {
+                            message: "You have to choose at least one checkbox in every question. But you didn't for " + type + " comment part."
                         }
+                    }
+                };
+            }
+            return null
+        }
 
+        const comment_types = ['summary', 'return', 'throws', 'param']
+        for (let type of comment_types) {
+            if (solution.output_values[type] === 'change') {
+                const err = validate_checkbox(this, type, 'change')
+                if (err != null) {
+                    return err
+                }
+            }
+            if (solution.output_values[type] === 'keep') {
+                const err = validate_checkbox(this, type, 'keep')
+                if (err != null) {
+                    return err
+                }
+            }
+        }
+
+
+        for (let type of comment_types) {
+            for (let c of cluster_dict[type]['other']) {
+                if (solution.output_values['cluster_' + c.toString()]) {
+                    if (solution.output_values['cluster_' + c.toString() + '_input'] === '' || solution.output_values['cluster_' + c.toString() + '_input'] == null) {
+                        // console.log('val', solution.output_values['cluster_' + c.toString() + '_input'])
+                        return {
+                            task_id: this.getTask().id,
+                            errors: {
+                                '__TASK__': {
+                                    message: "You have to write something in the 'other' input field. But you didn't for " + type + " comment part."
+                                }
+                            }
+                        };
                     }
                 }
             }
         }
 
-        var count = 0
-        for (let i = 0; i < 5; i++) {
-            if (choosen_sub_trees[i]) {
-                count += 1
-            }
-        }
-
-
-        var other_empty = false
-
-        other_empty = chosen_clusters.includes(3)
-            && solution.output_values['ccluster_3_input'] == null
-        other_empty |= chosen_clusters.includes(10)
-            && solution.output_values['ccluster_10_input'] == null
-        other_empty |= chosen_clusters.includes(17)
-            && solution.output_values['ccluster_17_input'] == null
-
-        if (other_empty) {
-            return {
-                task_id: this.getTask().id,
-                errors: {
-                    '__TASK__': {
-                        message: "You chose other cluster but didn't fill the input box. Please clarify what do you mean by other."
-                    }
-                }
-            };
-        }
-
-        if (count > 1) {
-            return {
-                task_id: this.getTask().id,
-                errors: {
-                    '__TASK__': {
-                        message: "You chose checkboxes in two different question tree leaves. Please choose only one."
-                    }
-                }
-            };
-        }
-
-
-        if (!isChosen) {
-            return {
-                task_id: this.getTask().id,
-                errors: {
-                    '__TASK__': {
-                        message: "At least one cluster should be choosen. Answer all questions at the bottom of the task."
-                    }
-                }
-            };
-        }
 
         return TolokaHandlebarsTask.prototype.validate.apply(this, arguments);
     },
@@ -100,115 +169,50 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
         console.log("I'm goint to quit render")
     },
     setSolution: function(solution) {
-        // Consistency
-
-        var root = this.getDOMElement()
-        var consistency = root.querySelector('.consistency');
-
-
-        if (!this._task.input_values.label) {
-            console.log("Consistency sample");
-            consistency.style.display = 'block';
+        const comment_types = ['summary', 'return', 'throws', 'param']
+        for (let type of comment_types) {
+            var root = this.getDOMElement().querySelector('.' + type + '-change')
+            if ((!root) || !('style' in root)) {
+                console.log("Early exit")
+                TolokaHandlebarsTask.prototype.setSolution.call(this, solution);
+                return
+            }
+            root.style.display = solution.output_values[type] === 'change' ? 'block' : 'none'
+            root = this.getDOMElement().querySelector('.' + type + '-keep')
+            root.style.display = solution.output_values[type] === 'keep' ? 'block' : 'none'
         }
 
 
-        root = consistency
-        true_d = root.querySelector('.true');
-        true_d.style.display = solution.output_values.croot === 'yes' ? 'block' : 'none';
-
-        false_d = root.querySelector('.false');
-        false_d.style.display = solution.output_values.croot === 'no' ? 'block': 'none';
-
-        {
-            // 1
-            root = true_d
-            var true_d = root.querySelector('.true1');
-            true_d.style.display = solution.output_values.croot1 === 'yes' ? 'block' : 'none';
-
-
-            {
-                // Others
-                var other = consistency.querySelector('.ccluster_3_input')
-                other.style.display = solution.output_values.ccluster_3 ? 'block' : 'none'
-
-                other = consistency.querySelector('.ccluster_10_input')
-                other.style.display = solution.output_values.ccluster_10 ? 'block' : 'none'
-
-                other = consistency.querySelector('.ccluster_17_input')
-                other.style.display = solution.output_values.ccluster_17 ? 'block' : 'none'
-            }
-
-            var false_d = root.querySelector('.false1');
-            false_d.style.display = solution.output_values.croot1 === 'no' ? 'block' : 'none';
-
-
-            { // 10
-                root = false_d
-                var true_d = root.querySelector('.true10');
-                true_d.style.display = solution.output_values.croot10 === 'yes' ? 'block' : 'none';
-
-                var false_d = root.querySelector('.false10');
-                false_d.style.display = solution.output_values.croot10 === 'no' ? 'block' : 'none';
-
-            }
-
-        }
-
-
-        false_d = consistency.querySelector('.false');
-
-        {
-            // 0
-
-            root = false_d
-            var true_d = root.querySelector('.true0');
-            true_d.style.display = solution.output_values.croot0 === 'yes' ? 'block' : 'none';
-
-            var false_d = root.querySelector('.false0');
-            false_d.style.display = solution.output_values.croot0 === 'no' ? 'block' : 'none';
-        }
-
-
-        const sub_tree_lists = [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15, 16, 17]]
-
-        function clear_clusters(tree_index) {
-            for (let i = 0; i < 5; i++) {
-                if (i === tree_index) {
-                    continue
-                }
-                for (let v of sub_tree_lists[i]) {
-                    var cluster_name = 'ccluster_' + v.toString()
-                    solution.output_values[cluster_name] = false
-                    console.log("Clear tree ", i, cluster_name)
-                }
+        // show others
+        for (let type of comment_types) {
+            for (let c of cluster_dict[type]['other']) {
+                console.log()
+                var other =  this.getDOMElement().querySelector('.cluster_' + c.toString() + '_input')
+                other.style.display = solution.output_values['cluster_' + c.toString()] ? 'block' : 'none'
             }
         }
 
-        if (solution.output_values.croot === 'yes') {
-            if (solution.output_values.croot1 === 'yes') {
-                // tree 0
-                clear_clusters(0)
-            } else {
-                if (solution.output_values.croot10 === 'yes') {
-                    // tree 1
-                    clear_clusters(1)
-                } else {
-                    // tree 2
-                    clear_clusters(2)
-                }
+        // clear other subtrees
+        function clear(type, action) {
+            for(let c of cluster_dict[type][action]) {
+                solution.output_values['cluster_' + c.toString()] = false
             }
-        } else {
-            if (solution.output_values.croot0 === 'yes') {
-                // tree 3
-                clear_clusters(3)
-            } else {
-                // tree 4
-                clear_clusters(4)
+        }
+
+        for (let type of comment_types) {
+            if (solution.output_values[type] === 'change') {
+                clear(type, 'keep')
+            }
+            if (solution.output_values[type] === 'keep') {
+                clear(type, 'change')
+            }
+            if (solution.output_values[type] === 'absent') {
+                clear(type, 'change')
+                clear(type, 'keep')
             }
         }
 
 
-        console.log(solution.output_values);
         TolokaHandlebarsTask.prototype.setSolution.call(this, solution);
     },
     onDestroy: function() {
