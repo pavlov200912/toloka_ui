@@ -1,80 +1,138 @@
-
 <div class='comment'>{{{comment}}}</div>
 <div class='code'>{{{code}}}</div>
 
-<div class="consistency" style="display: none;">
-    <div class="question">
-        <p>Should comment be changed?</p>
-        {{field type="radio" name="croot" value="yes" label="Yes" hotkey="y" class="yes"}}
-        {{field type="radio" name="croot" value="no" label="No" hotkey="n" class="no"}}
-    </div>
 
-    <div class="true" style="display: none;">
-        <p>The comment must be completely overwritten?</p>
-        {{field type="radio" name="croot1" value="yes" label="Yes" hotkey="y" class="yes"}}
-        {{field type="radio" name="croot1" value="no" label="No" hotkey="n" class="no"}}
+<div class="summary">
+    <p>Summary part of the comment</p>
+    {{field type="radio" name="summary" value="change" label="Must be changed" hotkey="1"}}
+    {{field type="radio" name="summary" value="keep" label="Can stay unchanged" hotkey="2"}}
+    {{field type="radio" name="summary" value="absent" label="Absent" hotkey="3"}}
+</div>
 
-        <div class="true1" style="display: none;">
-            <p>Why?</p>
-            <ul>
-                <li>{{field type="checkbox" name="ccluster_0"  label="Everything that the old comment covers in code changed" class="block"}}
-                <li>{{field type="checkbox" name="ccluster_1"  label="Comment is just a mock string like 'JavaDoc'" class="block"}}
-                <li>{{field type="checkbox" name="ccluster_2"  label="Comment doesn't correlate with function at all" class="block"}}
-                <li>{{field type="checkbox" name="ccluster_3"  label="Other" class="block"}}
-                <li><div class="ccluster_3_input" style="display: none;">{{field type="input" name="ccluster_3_input"}}</div>
+<div class="summary-change" style="display: none;">
+    <ul>
+        <li>{{field type="checkbox" name="cluster_0" label="Code logic described in the comment changed" class="block"}}
+        <li>{{field type="checkbox" name="cluster_1" label="Variable/function name used in summary part of the comment
+            renamed in the code" class="block"}}
+        <li>{{field type="checkbox" name="cluster_2" label="Everything that the summary part covered in code changed"
+            class="block"}}
+        <li>{{field type="checkbox" name="cluster_3" label="It’s just a mock string like (@since or @Javadoc)"
+            class="block"}}
+        <li>{{field type="checkbox" name="cluster_4" label="Other" class="block"}}
+        <li>
+            <div class="cluster_4_input" style="display: none;">{{field type="input" name="cluster_4_input"}}</div>
+    </ul>
+</div>
 
-            </ul>
-        </div>
-
-        <div class="false1" style="display: none;">
-            <p>Should something be changed in <strong>@param</strong> <strong>@return</strong> or <strong>@throws</strong>?</p>
-            {{field type="radio" name="croot10" value="yes" label="Yes" hotkey="y" class="yes"}}
-            {{field type="radio" name="croot10" value="no" label="No" hotkey="n" class="no"}}
-            <div class="true10" style="display: none;">
-                <p>Choose one or more:</p>
-                <ul>
-                    <li>{{field type="checkbox" name="ccluster_4"  label="Param" class="block"}}
-                    <li>{{field type="checkbox" name="ccluster_5"  label="Return" class="block"}}
-                    <li>{{field type="checkbox" name="ccluster_6"  label="Throws" class="block"}}
-                </ul>
-            </div>
-            <div class="false10" style="display: none;">
-                <p>Why should comment be changed?</p>
-                <ul>
-                    <li>{{field type="checkbox" name="ccluster_7"  label="It contains fixed technical debt (TODO)" class="block"}}
-                    <li>{{field type="checkbox" name="ccluster_8"  label="Variable/function name used in comment replaced/renamed in code" class="block"}}
-                    <li>{{field type="checkbox" name="ccluster_9"  label="Code logic described in comment changed" class="block"}}
-                    <li>{{field type="checkbox" name="ccluster_10"  label="Other" class="block"}}
-                    <li><div class="ccluster_10_input" style="display: none;">{{field type="input" name="ccluster_10_input"}}</div>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="false" style="display: none;">
-        <p>Code changes mainly about <strong>@return</strong> <strong>@param</strong> or <strong>@throws</strong>?
-            {{field type="radio" name="croot0" value="yes" label="Yes" hotkey="y" class="yes"}}
-            {{field type="radio" name="croot0" value="no" label="No" hotkey="n" class="no"}}
-        <div class="true0" style="dsiplay: none;">
-            <p>Choose one or more:</p>
-            <ul>
-                <li>{{field type="checkbox" name="ccluster_11"  label="param list changed but @param comment can stay unchanged" class="block"}}
-                <li>{{field type="checkbox" name="ccluster_12"  label="throw changed but @throw comment can stay unchanged" class="block"}}
-                <li>{{field type="checkbox" name="ccluster_13"  label="return type/statement changed but @return comment can stay unchanged" class="block"}}
-            </ul>
-        </div>
-        <div class="false0" style="dsiplay: none;">
-            <p>Why code changed? Choose one or more:</p>
-            <ul>
-                <li>{{field type="checkbox" name="ccluster_14"  label="Rewriting (for example syntax change)" class="block"}}
-                <li>{{field type="checkbox" name="ccluster_15"  label="Out of the scope API change" class="block"}}
-                <li>{{field type="checkbox" name="ccluster_16"  label="Renaming of a variable whic isn't specified in comment" class="block"}}
-                <li>{{field type="checkbox" name="ccluster_17"  label="Other" class="block"}}
-                <li><div class="ccluster_17_input" style="display: none;">{{field type="input" name="ccluster_17_input"}}</div>
-            </ul>
-        </div>
-    </div>
+<div class="summary-keep" style="display: none;">
+    <ul>
+        <li>{{field type="checkbox" name="cluster_29" label="The code changes do not affect logic described in summary"
+            class="block"}}
+        <li>{{field type="checkbox" name="cluster_5" label="Rewriting (for example syntax changed)" class="block"}}
+        <li>{{field type="checkbox" name="cluster_6" label="Out of the scope API change" class="block"}}
+        <li>{{field type="checkbox" name="cluster_7" label="Renaming of a variable which isn’t specified in the comment"
+            class="block"}}
+        <li>{{field type="checkbox" name="cluster_8" label="Other" class="block"}}
+        <li>
+            <div class="cluster_8_input" style="display: none;">{{field type="input" name="cluster_8_input"}}</div>
+    </ul>
+</div>
 
 
+<div class="param">
+    <p>@param part of the comment</p>
+    {{field type="radio" name="param" value="change" label="Must be changed" hotkey="1"}}
+    {{field type="radio" name="param" value="keep" label="Can stay unchanged" hotkey="2"}}
+    {{field type="radio" name="param" value="absent" label="Absent" hotkey="3"}}
+</div>
+
+
+<div class="param-change" style="display: none;">
+    <ul>
+        <li>{{field type="checkbox" name="cluster_9" label="Param is introduced or renamed in the code changes."
+            class="block"}}
+        <li>{{field type="checkbox" name="cluster_10" label="Param is renamed in the code changes and should be renamed
+            in comment" class="block"}}
+        <li>{{field type="checkbox" name="cluster_11" label="@param description no longer consistent with param logic"
+            class="block"}}
+        <li>{{field type="checkbox" name="cluster_12" label="Other" class="block"}}
+        <li>
+            <div class="cluster_12_input" style="display: none;">{{field type="input" name="cluster_12_input"}}</div>
+    </ul>
+</div>
+
+<div class="param-keep" style="display: none;">
+    <ul>
+        <li>{{field type="checkbox" name="cluster_13" label="The code changes do not affect the parameter list."
+            class="block"}}
+        <li>{{field type="checkbox" name="cluster_14" label="The code changes affect the parameter list, but the current
+            description remains consistent." class="block"}}
+        <li>{{field type="checkbox" name="cluster_15" label="Other" class="block"}}
+        <li>
+            <div class="cluster_15_input" style="display: none;">{{field type="input" name="cluster_15_input"}}</div>
+    </ul>
+</div>
+
+
+<div class="return">
+    <p>@return part of the comment</p>
+    {{field type="radio" name="return" value="change" label="Must be changed" hotkey="1"}}
+    {{field type="radio" name="return" value="keep" label="Can stay unchanged" hotkey="2"}}
+    {{field type="radio" name="return" value="absent" label="Absent" hotkey="3"}}
+</div>
+
+<div class="return-change" style="display: none;">
+    <ul>
+        <li>{{field type="checkbox" name="cluster_16" label="Return type is changed in a way current @return comment no
+            longer consistent" class="block"}}
+        <li>{{field type="checkbox" name="cluster_17" label="Return statement is changed in a way current @return
+            comment no longer consistent" class="block"}}
+        <li>{{field type="checkbox" name="cluster_18" label="Other" class="block"}}
+        <li>
+            <div class="cluster_18_input" style="display: none;">{{field type="input" name="cluster_18_input"}}</div>
+    </ul>
+</div>
+
+<div class="return-keep" style="display: none;">
+    <ul>
+        <li>{{field type="checkbox" name="cluster_19" label="The code changes do not affect the return statement or
+            type" class="block"}}
+        <li>{{field type="checkbox" name="cluster_20" label="The code changes affect return statement, but the current
+            description remains consistent" class="block"}}
+        <li>{{field type="checkbox" name="cluster_21" label="Other" class="block"}}
+        <li>
+            <div class="cluster_21_input" style="display: none;">{{field type="input" name="cluster_21_input"}}</div>
+    </ul>
+</div>
+
+<div class="throws">
+    <p>@throws part of the comment</p>
+    {{field type="radio" name="throws" value="change" label="Must be changed" hotkey="1"}}
+    {{field type="radio" name="throws" value="keep" label="Can stay unchanged" hotkey="2"}}
+    {{field type="radio" name="throws" value="absent" label="Absent" hotkey="3"}}
+</div>
+
+<div class="throws-change" style="display: none;">
+    <ul>
+        <li>{{field type="checkbox" name="cluster_22" label="Throw list is extended or reduced in the code changes"
+            class="block"}}
+        <li>{{field type="checkbox" name="cluster_23" label="Exception renamed in the code changes" class="block"}}
+        <li>{{field type="checkbox" name="cluster_24" label="@throw description no longer consistent with the code throw
+            part logic" class="block"}}
+        <li>{{field type="checkbox" name="cluster_25" label="Other" class="block"}}
+        <li>
+            <div class="cluster_25_input" style="display: none;">{{field type="input" name="cluster_25_input"}}</div>
+    </ul>
+</div>
+
+<div class="throws-keep" style="display: none;">
+    <ul>
+        <li>{{field type="checkbox" name="cluster_26" label="The code changes do not affect the throw list"
+            class="block"}}
+        <li>{{field type="checkbox" name="cluster_27" label="The code changes affect throw list, but the current
+            description remains consistent" class="block"}}
+        <li>{{field type="checkbox" name="cluster_28" label="Other" class="block"}}
+        <li>
+            <div class="cluster_28_input" style="display: none;">{{field type="input" name="cluster_28_input"}}</div>
+    </ul>
 </div>
