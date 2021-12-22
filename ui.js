@@ -2,7 +2,7 @@
 var cluster_dict = {
     'summary': {
         'change': [0, 1, 2, 3, 4],
-        'keep': [5, 6, 7, 8, 29],
+        'keep': [5, 6, 7, 8, 29, 30],
         'other': [4, 8]
     },
     'param': {
@@ -33,7 +33,7 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
                 task_id: this.getTask().id,
                 errors: {
                     '__TASK__': {
-                        message: "You have to choose ont of the options for all 4 comment parts."
+                        message: "You have to choose one of the options for all 4 comment parts."
                     }
                 }
             };
