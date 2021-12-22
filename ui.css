@@ -1,5 +1,17 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css");
 
+
+.container{
+    display: flex;
+}
+.float-right{
+    padding-left: 20px;
+    width: 600px;
+}
+.flot-child{
+    flex-grow: 1;
+}
+
 .d2h-d-none {
     display: none
 }
