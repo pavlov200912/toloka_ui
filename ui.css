@@ -1,6 +1,33 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css");
 
 
+.tooltip {
+    /* position: relative; */
+
+    display: inline-block;
+}
+
+img {display: block;}
+
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: rgba(255, 255, 128, 1.0);
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
 .container{
     display: flex;
 }
