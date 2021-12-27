@@ -169,8 +169,20 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
         console.log("I'm goint to quit render")
     },
     setSolution: function(solution) {
-        const comment_types = ['summary', 'return', 'throws', 'param']
+        const type_from_input = this.getDOMElement().querySelector('.type').innerHTML.toString()
+        // const comment_types = ['summary', 'return', 'throws', 'param']
+        const comment_types = [type_from_input]
+
         for (let type of comment_types) {
+            var root = this.getDOMElement().querySelector('.' + type)
+            if ((!root) || !('style' in root)) {
+                console.log("Early exit")
+                TolokaHandlebarsTask.prototype.setSolution.call(this, solution);
+                return
+            }
+            root.style.display = 'block'
+
+
             var root = this.getDOMElement().querySelector('.' + type + '-change')
             if ((!root) || !('style' in root)) {
                 console.log("Early exit")
@@ -180,6 +192,7 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
             root.style.display = solution.output_values[type] === 'change' ? 'block' : 'none'
             root = this.getDOMElement().querySelector('.' + type + '-keep')
             root.style.display = solution.output_values[type] === 'keep' ? 'block' : 'none'
+
         }
 
 
