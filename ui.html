@@ -4,7 +4,7 @@
 
 
 <div class="summary" style="display: none;">
-    <p>Summary part of the comment</p>
+    <p>The comment:</p>
     {{field type="radio" name="summary" value="change" label="Must be changed" hotkey="1"}}
     {{field type="radio" name="summary" value="keep" label="Can stay unchanged" hotkey="2"}}
     {{!-- {{field type="radio" name="summary" value="absent" label="Absent" hotkey="3"}} --}}
@@ -25,10 +25,10 @@
             <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
                 <span class="tooltiptext">Everything that the summary part covered in code changed</span>
             </div>
-        <li>{{field type="checkbox" name="cluster_3" label="It’s just a mock string like (@since or @Javadoc)"
+        <li>{{field type="checkbox" name="cluster_3" label="Mock string"
             class="block"}}
             <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">Mock string</span>
+                <span class="tooltiptext">It’s just a mock string like (@since or @Javadoc)</span>
             </div>
         <li>{{field type="checkbox" name="cluster_4" label="Other" class="block"}}
         <li>
@@ -68,7 +68,7 @@
 
 
 <div class="param" style="display: none;">
-    <p>@param part of the comment</p>
+    <p>The comment:</p>
     {{field type="radio" name="param" value="change" label="Must be changed" hotkey="1"}}
     {{field type="radio" name="param" value="keep" label="Can stay unchanged" hotkey="2"}}
     {{!-- {{field type="radio" name="param" value="absent" label="Absent" hotkey="3"}} --}}
@@ -80,17 +80,16 @@
         <li>{{field type="checkbox" name="cluster_9" label="param added/removed"
             class="block"}}
             <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">Param is introduced or removed in the code changes.</span>
+                <span class="tooltiptext">Parameter is introduced or removed in the code changes.</span>
             </div>
         <li>{{field type="checkbox" name="cluster_10" label="@param renamed" class="block"}}
             <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">Param is renamed in the code changes and should be renamed
-            in the comment</span>
+                <span class="tooltiptext">Parameter is renamed in the code changes, and should be renamed in the comment.</span>
             </div>
         <li>{{field type="checkbox" name="cluster_11" label="@param description inconsistent"
             class="block"}}
             <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">@param description no longer consistent with the param logic</span>
+                <span class="tooltiptext">@param description is no longer consistent with the param logic.</span>
             </div>
         <li>{{field type="checkbox" name="cluster_12" label="Other" class="block"}}
         <li>
@@ -100,7 +99,7 @@
 
 <div class="param-keep" style="display: none;">
     <ul>
-        <li>{{field type="checkbox" name="cluster_13" label="Changes do not affect @param"
+        <li>{{field type="checkbox" name="cluster_13" label="Changes don't affect param list"
             class="block"}}
             <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
                 <span class="tooltiptext">The code changes do not affect the parameter list.</span>
@@ -118,7 +117,7 @@
 
 
 <div class="return" style="display: none;">
-    <p>@return part of the comment</p>
+    <p>The comment:</p>
     {{field type="radio" name="return" value="change" label="Must be changed" hotkey="1" }}
     {{field type="radio" name="return" value="keep" label="Can stay unchanged" hotkey="2"}}
 </div>
@@ -146,7 +145,7 @@
 
 <div class="return-keep" style="display: none;">
     <ul>
-        <li>{{field type="checkbox" name="cluster_19" label="Changes don't affect @return" class="block"}}
+        <li>{{field type="checkbox" name="cluster_19" label="Changes don't affect return" class="block"}}
             <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
                 <span class="tooltiptext">The code changes to the code do not affect either the return statement or the return type.</span>
             </div>

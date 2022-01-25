@@ -1,4 +1,3 @@
-
 var cluster_dict = {
     'summary': {
         'change': [0, 1, 2, 3, 4],
@@ -25,10 +24,12 @@ var cluster_dict = {
 exports.Task = extend(TolokaHandlebarsTask, function (options) {
     TolokaHandlebarsTask.call(this, options);
 }, {
-    validate: function(solution) {
+    validate: function (solution) {
+        const type_from_input = this.getDOMElement().querySelector('.type').innerHTML.toString()
+        // const comment_types = ['summary', 'return', 'throws', 'param']
+        const comment_types = [type_from_input]
 
-        if(!solution.output_values.param || !solution.output_values.summary || !solution.output_values['return'] ||
-            !solution.output_values.throws) {
+        if (!solution.output_values[type_from_input]) {
             return {
                 task_id: this.getTask().id,
                 errors: {
@@ -123,7 +124,6 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
             return null
         }
 
-        const comment_types = ['summary', 'return', 'throws', 'param']
         for (let type of comment_types) {
             if (solution.output_values[type] === 'change') {
                 const err = validate_checkbox(this, type, 'change')
@@ -161,15 +161,19 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
 
         return TolokaHandlebarsTask.prototype.validate.apply(this, arguments);
     },
-    onRender: function() {
+    onRender: function () {
         // DOM-элемент задания сформирован (доступен через #getDOMElement())
         console.log("Hello, I'm inside render")
         const comment = this.getDOMElement().querySelector('.comment')
         console.log(comment.innerHTML.toString())
         console.log("I'm goint to quit render")
     },
-    setSolution: function(solution) {
-        const type_from_input = this.getDOMElement().querySelector('.type').innerHTML.toString()
+    setSolution: function (solution) {
+        const type_element = this.getDOMElement().querySelector('.type')
+        if (!(type_element)) {
+            return;
+        }
+        const type_from_input = type_element.innerHTML.toString()
         // const comment_types = ['summary', 'return', 'throws', 'param']
         const comment_types = [type_from_input]
 
@@ -200,14 +204,14 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
         for (let type of comment_types) {
             for (let c of cluster_dict[type]['other']) {
                 console.log()
-                var other =  this.getDOMElement().querySelector('.cluster_' + c.toString() + '_input')
+                var other = this.getDOMElement().querySelector('.cluster_' + c.toString() + '_input')
                 other.style.display = solution.output_values['cluster_' + c.toString()] ? 'block' : 'none'
             }
         }
 
         // clear other subtrees
         function clear(type, action) {
-            for(let c of cluster_dict[type][action]) {
+            for (let c of cluster_dict[type][action]) {
                 solution.output_values['cluster_' + c.toString()] = false
             }
         }
@@ -228,13 +232,14 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
 
         TolokaHandlebarsTask.prototype.setSolution.call(this, solution);
     },
-    onDestroy: function() {
+    onDestroy: function () {
         // Задание завершено, можно освобождать (если были использованы) глобальные ресурсы
     }
 });
 
 function extend(ParentClass, constructorFunction, prototypeHash) {
-    constructorFunction = constructorFunction || function () {};
+    constructorFunction = constructorFunction || function () {
+    };
     prototypeHash = prototypeHash || {};
     if (ParentClass) {
         constructorFunction.prototype = Object.create(ParentClass.prototype);
