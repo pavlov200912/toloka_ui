@@ -1,0 +1,102 @@
+<h2><strong>Labeling source code changes and comments</strong></h2>
+<p>First of all, we thank you for your participation in this project.</p>
+
+<p>Your task, if you choose to accept it, is to answer several questions about the consistency of changes in <strong>Java functions</strong> and their corresponding <strong>comments</strong>.</p>
+
+<p>Depending on the results of
+    this task, the best tolokers will gain access to more complicated code-labeling tasks with higher per-task
+    payment.</p>
+
+<!--<h2>Comment Structure</h2>-->
+
+<!--<p>We divide each JavaDoc comment into four parts: <strong>Summary</strong>, <strong>@param</strong>, <strong>@return</strong>, and <strong>@throws</strong>.</p>-->
+
+<!--<img src="https://i.ibb.co/hB9W48X/Screenshot-2021-12-01-at-14-01-06.png" width="800">-->
+
+
+<!--<ul>-->
+<!--    <li><p>The <strong>Summary</strong> part usually consists of several sentences at the beginning of a comment. This-->
+<!--        part describes the general behavior of the function. We can assume that the Summary is any comment that does not belong to one of the following parts.</p></li>-->
+<!--    <li><p>The <strong>@param</strong> part consists of descriptions of the function parameters, with each parameter-->
+<!--        described after the @param tag.</p></li>-->
+<!--    <li><p>The <strong>@return</strong> part goes after the @return tag in the comment and describes the return value.-->
+<!--    </p></li>-->
+<!--    <li><p>The <strong>@throws</strong> part follows after @throws or @exception tags and describes an exception that-->
+<!--        may be thrown from this method. </p></li>-->
+<!--</ul>-->
+
+<!--<p>The comment does not necessarily contain all four parts. For example, it can only consist of @return and-->
+<!--    @param parts, this is normal.</p>-->
+
+<h2><strong>Labeling example</strong></h2>
+
+<p>The examples provided for the annotation will look
+    like this:</p>
+
+<img width="800" src="https://i.ibb.co/2n140Hy/Screenshot-2022-01-18-at-13-48-10.png">
+
+<p>Let's take a closer look at this
+    example. You may notice that after the change the "atoms" parameter is renamed to "txns". However, the corresponding comment still describes the param as "atoms", making this information inconsistent.</p>
+For this reason, we select the following options:
+
+<ul>
+    <li>Comment <strong> must be changed</strong> </li>
+    <li><p> The reason is <strong>@param renamed</strong></p></li>
+</ul>
+
+<h2><strong>Careful markup</strong></h2>
+
+<p>Before starting the markup, we ask you to read the detailed meaning of all the available answers.</p>
+
+<!--<table border="1px solid black;" >-->
+<!--<tr>-->
+<!--    <td >param added/removed</td>-->
+<!--    <td>Param is introduced or removed in the code changes.</td>-->
+<!--</tr>-->
+
+<!--</table>-->
+<table dir="ltr" width="500" border="1"
+       summary="purpose/structure for speech output">
+
+    <colgroup width="50%" />
+    <colgroup id="colgroup" class="colgroup" align="center"
+              valign="middle" title="title" width="1*"
+              span="2" style="background:#FFECB3;" />
+    <thead>
+    <tr>
+        <th scope="col">Checkbox</th>
+        <th scope="col">Meaning</th>
+    </tr>
+    </thead>
+
+    <tr>
+        <td>Param added/removed</td>
+        <td>Parameter is introduced or removed in the code changes.</td>
+    </tr>
+
+    <tbody>
+    <tr>
+        <td>@param renamed</td>
+        <td>Parameter is renamed in the code changes, and should be renamed in the comment.</td>
+    </tr>
+    <tr>
+
+        <td>@param description inconsistent</td>
+        <td>@param description is no longer consistent with the param logic.</td>
+    </tr>
+    <tr>
+
+        <td>Changes don't affect param list</td>
+        <td>The code changes do not affect the parameter list.</td>
+    </tr>
+    <tr>
+
+        <td>@param remains consistent</td>
+        <td>The code changes affect the parameter list, but the current description remains consistent.</td>
+    </tr>
+
+    </tbody>
+</table>
+
+<p>We expect you to be careful about the markup and will use test assignments to validate it for correctness.</p>
+
