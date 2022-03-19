@@ -1,11 +1,14 @@
 <h2>Labeling source code changes and comments</h2>
+
 <p>First of all, we thank you for your participation in this project.</p>
 
-<p>Your task, if you choose to accept it, is to answer several questions about consistency of changes in <strong>Java functions</strong> and corresponding <strong>comments</strong>.</p>
+<p>Your task, if you choose to accept it, is to answer several questions about the consistency of changes in <strong>Java
+    functions</strong> and their corresponding <strong>comments</strong>.</p>
 
-<p>Depending on the results on
-    this task, the best tolokers will gain access to more complicated code-labelling tasks with higher per-task
+<p>Depending on the results of
+    this task, the best tolokers will gain access to more complicated code-labeling tasks with higher per-task
     payment.</p>
+
 
 <!--<h2>Comment Structure</h2>-->
 
@@ -28,36 +31,83 @@
 <!--<p>The comment does not necessarily contain all four parts. For example, it can only consist of @return and-->
 <!--    @param parts, this is normal.</p>-->
 
-<h2>Labelling example</h2>
+<h2><strong>Labeling example</strong></h2>
 
 <p>The examples provided for the annotation will look
     like this:</p>
 
-<img width="800" src="https://i.ibb.co/b18GRt2/Screenshot-2021-12-13-at-12-56-45.png">
+<img width="800" src="https://i.ibb.co/q0NtQsL/Screenshot-2022-02-19-at-16-34-06.png">
 
 <p>Let's take a closer look at this
-    example. You may notice that the code changes introduce a new parameter to the method's signature. After the change,
-    the method takes 5 parameters instead of 4. However, the corresponding comment still has information about only 4 of
-    them.</p>
+    example.
+
+    You may notice that after the code change the method's return type changed from "Landscape" to "void".
+
+    However, the corresponding
+    comment still describes the return value as "the new landscape object", making this information inconsistent.</p>
+For this reason, we select the following options:
+
 <ul>
-    <li><p> Summary part can stay <strong>unchanged</strong>, because the code changes don't affect the logic described
-        in the comment. The method still "adds a HostPath volume to the pod-spec".</p></li>
-    <li><p> @param part <strong>must be changed</strong>. We have to add a description for the newly introduced
-        parameter. </p></li>
-    <li><p> @return part is absent. </p></li>
-    <li><p> @throws part is also absent. </p></li>
+    <li>Comment <strong> must be changed</strong></li>
+    <li><p> The reason is <strong>Type changed</strong></p></li>
 </ul>
 
-<h2>Careful markup</h2>
 
-<p>Before starting the markup, we ask you to read all the answer options hidden behind each of the choice points.</p>
 
-<p>For example, for the Summary part there are such options:</p>
+<h2><strong>Careful markup</strong></h2>
 
-<img width="600" src="https://i.ibb.co/c6DJcZr/Screenshot-2021-12-13-at-11-46-54.png">
+<p>Before starting the markup, we ask you to read the detailed meaning of all the available answers.</p>
 
-<img width="450" src="https://i.ibb.co/Mcj7JcX/Screenshot-2021-12-13-at-11-46-29.png">
 
-<p>Note that there are separate checkboxes for examples that only consist of @since, for examples with renaming, for examples with a code style change, and so on.</p>
+<table dir="ltr" width="500" border="1"
+       summary="purpose/structure for speech output">
+
+    <colgroup width="50%"/>
+    <colgroup id="colgroup" class="colgroup" align="center"
+              valign="middle" title="title" width="1*"
+              span="2" style="background:#FFECB3;"/>
+    <thead>
+    <tr>
+        <th scope="col">Checkbox</th>
+        <th scope="col">Meaning</th>
+    </tr>
+    </thead>
+
+    <tr>
+        <td>Return type changed</td>
+        <td>Return type is changed in a way current @return comment no
+            longer consistent.
+        </td>
+    </tr>
+
+    <tbody>
+    <tr>
+        <td>Return statement changed</td>
+        <td>Only return statement is changed, not type, but current @return
+            comment no longer consistent.
+        </td>
+    </tr>
+    <tr>
+
+        <td>Changes don't affect return block</td>
+        <td>The code changes to the code do not affect either the return statement or the return type.</td>
+    </tr>
+    <tr>
+
+        <td>@return remains consistent</td>
+        <td>The code changes affect return statement/type, but the current
+            description remains consistent.
+        </td>
+    </tr>
+
+    </tbody>
+</table>
 
 <p>We expect you to be careful about the markup and will use test assignments to validate it for correctness.</p>
+
+
+<h2><strong>Explanation: Return statements and Return type</strong></h2>
+
+<p>As you probably know, every Java method has return type. In addition, each method contains one or more return statements.  To carry out our task, you must understand the difference. The picture below shows the <span style="background-color: rgba(159,174,255, 1); "> return type</span> and the <span style="background-color: rgba(244,202,254, 1)">return statements</span> in different colors.</p>
+
+<img width="500" src="https://i.ibb.co/Y0dGvz8/Screenshot-2022-02-19-at-16-50-43.png">

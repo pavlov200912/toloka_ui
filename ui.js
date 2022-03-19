@@ -1,8 +1,8 @@
 var cluster_dict = {
     'summary': {
         'change': [0, 1, 2, 3, 4],
-        'keep': [5, 6, 7, 8, 29, 30],
-        'other': [4, 8]
+        'keep': [], //5, 6, 7, 8, 29, 30
+        'other': [4] //, 8
     },
     'param': {
         'change': [9, 10, 11, 12],
@@ -34,7 +34,20 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
                 task_id: this.getTask().id,
                 errors: {
                     '__TASK__': {
-                        message: "You have to choose one of the options for all 4 comment parts."
+                        message: "You have to choose one of the options. Should comment be changed?."
+                    }
+                }
+            };
+        }
+
+        if (type_from_input === 'summary'
+            && solution.output_values['summary'] == 'keep' &&
+            (!solution.output_values['summary-external'] || !solution.output_values['summary-renaming'])) {
+            return {
+                task_id: this.getTask().id,
+                errors: {
+                    '__TASK__': {
+                        message: "You have to choose one of the options for every question under the \"Can stay unchanged option.\""
                     }
                 }
             };
@@ -108,6 +121,9 @@ exports.Task = extend(TolokaHandlebarsTask, function (options) {
 
         function validate_checkbox(obj, type, action) {
             var is_chosen = false
+            if (cluster_dict[type][action].length == 0) {
+                return null
+            }
             for (let c of cluster_dict[type][action]) {
                 is_chosen = is_chosen || (solution.output_values['cluster_' + c.toString()] === true)
             }
