@@ -13,57 +13,115 @@
 <div class="summary-change" style="display: none;">
     <ul>
         <li>{{field type="checkbox" name="cluster_0" label="Logic changed" class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">Code logic described in the comment changed</span>
+<!--            <div class="tooltip">-->
+<!--                <img src="https://i.ibb.co/znCz9rN/info.png" width="20">-->
+<!--                <span class="tooltiptext">Code logic described in the comment changed</span>-->
+<!--            </div>-->
+
+            <div class="parent tooltip">
+                <div class="child inline-block-child"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20"> </div>
+                <div class="child inline-block-child"> <span class="tooltiptext">Code logic described in the comment changed</span> </div>
             </div>
+
         <li>{{field type="checkbox" name="cluster_1" label="Renaming in code" class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">Variable/function name used in summary part of the comment renamed/replaced in the code</span>
+<!--            <div class="tooltip">-->
+        <!--                <img src="https://i.ibb.co/znCz9rN/info.png" width="20">-->
+        <!--                <span class="tooltiptext">Variable/function name used in summary part of the comment renamed/replaced in the code</span>-->
+        <!--            </div>-->
+            <div class="parent tooltip">
+                <div class="child inline-block-child"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20"> </div>
+                <div class="child inline-block-child"> <span class="tooltiptext">Variable/function name used in summary part of the comment renamed/replaced in the code</span> </div>
             </div>
         <li>{{field type="checkbox" name="cluster_2" label="Everything changed"
             class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">Everything that the summary part covered in code changed</span>
+<!--            <div class="tooltip">-->
+<!--                <img src="https://i.ibb.co/znCz9rN/info.png" width="20">-->
+<!--                <span class="tooltiptext">Everything that the summary part covered in code changed</span>-->
+<!--            </div>-->
+            <div class="parent tooltip">
+                <div class="child inline-block-child"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20"> </div>
+                <div class="child inline-block-child"> <span class="tooltiptext">Everything that the summary part covered in code changed</span> </div>
             </div>
         <li>{{field type="checkbox" name="cluster_3" label="Mock string"
             class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">It’s just a mock string like (@since or @Javadoc)</span>
+<!--            <div class="tooltip">-->
+<!--                <img src="https://i.ibb.co/znCz9rN/info.png" width="20">-->
+<!--                <span class="tooltiptext">It's just a mock string like (@since or @Javadoc)</span>-->
+<!--            </div>-->
+            <div class="parent tooltip">
+                <div class="child inline-block-child"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20"> </div>
+                <div class="child inline-block-child"> <span class="tooltiptext">It's just a mock string like (@since or @Javadoc)</span> </div>
             </div>
         <li>{{field type="checkbox" name="cluster_4" label="Other" class="block"}}
         <li>
             <div class="cluster_4_input" style="display: none;">{{field type="input" name="cluster_4_input"}}</div>
     </ul>
+
+
 </div>
 
+
+
 <div class="summary-keep" style="display: none;">
-    <ul>
-        <li>{{field type="checkbox" name="cluster_29" label="Changes do not affect"
-            class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">The code changes do not affect logic described in summary</span>
-            </div>
-        <li>{{field type="checkbox" name="cluster_5" label="Code simplification" class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">Code simplification or code style changes</span>
-            </div>
-        <li>{{field type="checkbox" name="cluster_30" label="Move refactoring" class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">Move refactoring, some code functionality extracted elsewhere</span>
-            </div>
-        <li>{{field type="checkbox" name="cluster_6" label="External change" class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">Out of the scope API change</span>
-            </div>
-        <li>{{field type="checkbox" name="cluster_7" label="Renaming outside comment"
-            class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
-                <span class="tooltiptext">Renaming of a variable which isn’t specified in the comment</span>
-            </div>
-        <li>{{field type="checkbox" name="cluster_8" label="Other" class="block"}}
-        <li>
-            <div class="cluster_8_input" style="display: none;">{{field type="input" name="cluster_8_input"}}</div>
-    </ul>
+    {{!-- <ul>
+    <li>{{field type="checkbox" name="cluster_29" label="Changes do not affect"
+        class="block"}}
+        <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+            <span class="tooltiptext">The code changes do not affect logic described in summary</span>
+        </div>
+    <li>{{field type="checkbox" name="cluster_5" label="Code simplification" class="block"}}
+        <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+            <span class="tooltiptext">Code simplification or code style changes</span>
+        </div>
+    <li>{{field type="checkbox" name="cluster_30" label="Move refactoring" class="block"}}
+        <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+            <span class="tooltiptext">Move refactoring, some code functionality extracted elsewhere</span>
+        </div>
+    <li>{{field type="checkbox" name="cluster_6" label="External change" class="block"}}
+        <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+            <span class="tooltiptext">Out of the scope API change</span>
+        </div>
+    <li>{{field type="checkbox" name="cluster_7" label="Renaming outside comment"
+        class="block"}}
+        <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+            <span class="tooltiptext">Renaming of a variable which isn’t specified in the comment</span>
+        </div>
+    <li>{{field type="checkbox" name="cluster_8" label="Other" class="block"}}
+    <li>
+        <div class="cluster_8_input" style="display: none;">{{field type="input" name="cluster_8_input"}}</div>
+</ul> --}}
+    <div class="summary-external">
+        <p>Only external function or class usage is changed in the code.
+<!--            <span class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">-->
+<!--                <span class="tooltiptext">Some external function call or class usage is changed in the code. Logic of the method is not changed. </span>-->
+<!--            </span>-->
+            <span class="parent tooltip">
+                <span class="child inline-block-child"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20"> </span>
+                <span class="child inline-block-child"> <span class="tooltiptext">Some external function call or class usage is changed in the code. Logic of the method is not changed. </span> </span>
+            </span>
+        </p>
+        {{field type="radio" name="summary-external" value="yes" label="Yes" hotkey="1"}}
+        {{field type="radio" name="summary-external" value="no" label="No" hotkey="2"}}
+    </div>
+
+
+    <div class="summary-renaming">
+        <p>Variable which is not specified in the comment is renamed.
+            <span class="parent tooltip">
+                <span class="child inline-block-child"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20"> </span>
+                <span class="child inline-block-child"> <span class="tooltiptext">Renaming of a local variable or method's renaming, which does not affect the comment.</span> </span>
+            </span>
+<!--            <span class="tooltip">-->
+<!--                <img src="https://i.ibb.co/znCz9rN/info.png" width="20">-->
+<!--                <span class="tooltiptext">Renaming of a local variable or method's renaming, which does not affect the comment.</span>-->
+<!--            </span>-->
+<!--            <span class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">-->
+<!--                <span class="tooltiptext"></span>-->
+<!--            </span>-->
+        </p>
+        {{field type="radio" name="summary-renaming" value="yes" label="Yes" hotkey="1"}}
+        {{field type="radio" name="summary-renaming" value="no" label="No" hotkey="2"}}
+    </div>
 </div>
 
 
@@ -79,16 +137,16 @@
     <ul>
         <li>{{field type="checkbox" name="cluster_9" label="param added/removed"
             class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+            <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
                 <span class="tooltiptext">Parameter is introduced or removed in the code changes.</span>
             </div>
         <li>{{field type="checkbox" name="cluster_10" label="@param renamed" class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+            <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
                 <span class="tooltiptext">Parameter is renamed in the code changes, and should be renamed in the comment.</span>
             </div>
         <li>{{field type="checkbox" name="cluster_11" label="@param description inconsistent"
             class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+            <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
                 <span class="tooltiptext">@param description is no longer consistent with the param logic.</span>
             </div>
         <li>{{field type="checkbox" name="cluster_12" label="Other" class="block"}}
@@ -101,11 +159,11 @@
     <ul>
         <li>{{field type="checkbox" name="cluster_13" label="Changes don't affect param list"
             class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+            <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
                 <span class="tooltiptext">The code changes do not affect the parameter list.</span>
             </div>
         <li>{{field type="checkbox" name="cluster_14" label="@param remains consistent" class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+            <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
                 <span class="tooltiptext">The code changes affect the parameter list, but the current
             description remains consistent.</span>
             </div>
@@ -124,7 +182,7 @@
 
 <div class="return-change" style="display: none;">
     <ul>
-        <li>{{field type="checkbox" name="cluster_16" label="Type changed" class="block"}}
+        <li>{{field type="checkbox" name="cluster_16" label="Return type changed" class="block"}}
 
             <div class="tooltip">
                 <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
@@ -132,8 +190,9 @@
             longer consistent</span>
             </div>
 
-        <li>{{field type="checkbox" name="cluster_17" label="Statement changed" class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+        <li>{{field type="checkbox" name="cluster_17" label="Return statement changed" class="block"}}
+
+            <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
                 <span class="tooltiptext">Only return statement is changed, not type, but current @return
             comment no longer consistent</span>
             </div>
@@ -145,13 +204,13 @@
 
 <div class="return-keep" style="display: none;">
     <ul>
-        <li>{{field type="checkbox" name="cluster_19" label="Changes don't affect return" class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+        <li>{{field type="checkbox" name="cluster_19" label="Changes don't affect return block" class="block"}}
+            <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
                 <span class="tooltiptext">The code changes to the code do not affect either the return statement or the return type.</span>
             </div>
 
         <li>{{field type="checkbox" name="cluster_20" label="@return remains consistent" class="block"}}
-            <div class="tooltip"> <img src="https://i.ibb.co/znCz9rN/info.png" width="20">
+            <div class="tooltip"><img src="https://i.ibb.co/znCz9rN/info.png" width="20">
                 <span class="tooltiptext">The code changes affect return statement/type, but the current
             description remains consistent</span>
             </div>

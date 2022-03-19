@@ -1,0 +1,93 @@
+<h2>Labeling source code changes and comments</h2>
+
+<p>First of all, we thank you for your participation in this project.</p>
+
+<p>Your task, if you choose to accept it, is to answer several questions about the consistency of changes in <strong>Java
+    functions</strong> and their corresponding <strong>comments</strong>.</p>
+
+<p>Depending on the results of
+    this task, the best tolokers will gain access to more complicated code-labeling tasks with higher per-task
+    payment.</p>
+
+
+<!--<h2>Comment Structure</h2>-->
+
+<!--<p>We divide each JavaDoc comment into four parts: <strong>Summary</strong>, <strong>@param</strong>, <strong>@return</strong>, and <strong>@throws</strong>.</p>-->
+
+<!--<img src="https://i.ibb.co/hB9W48X/Screenshot-2021-12-01-at-14-01-06.png" width="800">-->
+
+
+<!--<ul>-->
+<!--    <li><p>The <strong>Summary</strong> part usually consists of several sentences at the beginning of a comment. This-->
+<!--        part describes the general behavior of the function. We can assume that the Summary is any comment that does not belong to one of the following parts.</p></li>-->
+<!--    <li><p>The <strong>@param</strong> part consists of descriptions of the function parameters, with each parameter-->
+<!--        described after the @param tag.</p></li>-->
+<!--    <li><p>The <strong>@return</strong> part goes after the @return tag in the comment and describes the return value.-->
+<!--    </p></li>-->
+<!--    <li><p>The <strong>@throws</strong> part follows after @throws or @exception tags and describes an exception that-->
+<!--        may be thrown from this method. </p></li>-->
+<!--</ul>-->
+
+<!--<p>The comment does not necessarily contain all four parts. For example, it can only consist of @return and-->
+<!--    @param parts, this is normal.</p>-->
+
+<h2><strong>Labeling example</strong></h2>
+
+<p>The examples provided for the annotation will look
+    like this:</p>
+
+<img width="700" src="https://i.ibb.co/hBgWjPD/Screenshot-2022-03-05-at-13-29-39.png">
+
+<p>Let's take a closer look at this
+    example.
+
+
+    Before the code change, the method removed an existing file (line 4)<strong>or</strong> created a new file (line 7).
+
+    After the code change, the method removes an existing file (line 4) <strong>and</strong> creates a new file (line 8).
+
+    <br>
+    However, the method's comment does not capture this change. It still uses <strong>or</strong> instead of <strong>and</strong>. </p>
+For this reason, we select the following options:
+
+<ul>
+    <li>Comment <strong> must be changed</strong></li>
+    <li><p> The reason is <strong>Logic changed</strong></p></li>
+</ul>
+
+
+
+<h2><strong>Careful markup</strong></h2>
+
+<p>Before starting the markup, we ask you to read the detailed meaning of all the available answers.</p>
+
+<img src="https://i.ibb.co/wQ869g5/Screenshot-2022-03-14-at-17-07-40.png" width="900">
+
+<p>In the following two sections we will provide a detailed explanation for "Can stay unchanged" options.</p>
+
+<h4>External change</h4>
+
+<p>Some external function call or class usage is changed in the code. Logic of the method is not changed.</p>
+
+<img src="https://i.ibb.co/K5w8SRj/Screenshot-2022-03-05-at-14-03-31.png" width="700">
+
+
+<p>Developers change an interface of the create function for RandomSource variables. This change is
+    exclusively external for the testSharedStateSample method. It does not change any code logic or local variables. That's why <strong>"Yes"</strong> should be chosen in this question. </p>
+
+
+
+<h4>Renaming without introducing inconsistency</h4>
+
+<p>Renaming of a variable or method's renaming, which does not affect the comment.</p>
+
+<img src="https://i.ibb.co/F04zcHQ/Screenshot-2022-03-05-at-14-18-52.png" width="700">
+
+<p>You may notice that the method's name is changed in this example. However, the comment shouldn't be changed, because it does not mention renamed tokens explicitly.
+</p>
+
+
+<h2>Quality control</h2>
+
+<p>We expect you to be careful about the markup and will use test assignments to validate it for correctness.</p>
+

@@ -20,12 +20,16 @@ img {display: block;}
     padding: 5px 0;
 
     /* Position the tooltip */
-    position: absolute;
+    position: static;
     z-index: 1;
 }
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
+}
+
+.inline-block-child {
+    display: inline-block;
 }
 
 .container{
